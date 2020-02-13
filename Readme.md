@@ -1,8 +1,10 @@
-# Application lourde pour le projet two
+# Java Desktop for the Project Two
 
-Fait en **Java** avec la librairie **Swing**.
+[![Maven Central status](https://img.shields.io/maven-central/v/com.atlassian.commonmark/commonmark.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.atlassian.commonmark%22)
 
-Comme le code a été écrit sur VSCode, il faut donc faire autrement pour pouvoir
-la librairie **jdbc** afin de pouvoir se connecter à la base de donnéees.
+Made in **Java** with the framework **Swing** to create graphic interfaces
 
-J'ai mis les commentaires en anglais comme on a décidé.
+## TODO (for now)
+
+- Multiple panels for the app to allow he user to navigate through it.
+- Do a listing of the products
