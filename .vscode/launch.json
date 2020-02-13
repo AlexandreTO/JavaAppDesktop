@@ -1,0 +1,79 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MainTable",
+            "request": "launch",
+            "mainClass": "Swing.MainTable",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ConnexionTest",
+            "request": "launch",
+            "mainClass": "Swing.ConnexionTest",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - InterfaceCnx",
+            "request": "launch",
+            "mainClass": "Swing.InterfaceCnx",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "request": "launch",
+            "mainClass": "Swing.Test",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - test",
+            "request": "launch",
+            "mainClass": "Swing.test",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Login",
+            "request": "launch",
+            "mainClass": "app.Login"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "app.App"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "Swing.App",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "Windows.App",
+            "projectName": "windows"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Calculatrice",
+            "request": "launch",
+            "mainClass": "Windows.Calculatrice",
+            "projectName": "windows"
+        }
+    ]
+}
