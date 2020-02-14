@@ -18,6 +18,7 @@ public class DisplayCl extends JFrame {
      *
      */
     private static final long serialVersionUID = 1420656477655832537L;
+
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
     JTable table = new JTable(model);

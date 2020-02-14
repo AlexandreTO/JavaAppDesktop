@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "Swing.Main",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TabPane",
+            "request": "launch",
+            "mainClass": "Swing.TabPane",
+            "projectName": "Swing"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MainTable",
             "request": "launch",
             "mainClass": "Swing.MainTable",
