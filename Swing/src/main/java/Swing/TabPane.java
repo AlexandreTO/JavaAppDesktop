@@ -65,6 +65,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
 
     }
 
+    // List listener on mouse click
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
             if (list.getSelectedIndex() == 0) {
@@ -86,6 +87,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
 
     }
 
+    // Display the table for the products
     private void DisplayProduct() throws SQLException {
         String sql = "select DISTINCT Nom, Prix, Description FROM Produit";
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
