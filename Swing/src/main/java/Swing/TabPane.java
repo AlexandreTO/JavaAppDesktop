@@ -34,15 +34,13 @@ public class TabPane extends JFrame implements ListSelectionListener {
         super("JTab");
 
         this.setLayout(new BorderLayout());
-        JPanel rightPanel = new JPanel();
-        rightPanel.add(table);
-        this.setSize(800, 800);
+        this.setSize(800, 500);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Left side of the window
 
         list.addListSelectionListener(this);
-        JScrollPane pg = new JScrollPane(rightPanel);
+        JScrollPane pg = new JScrollPane(table);
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, list, pg);
 
         JPanel contentPane = (JPanel) getContentPane();
@@ -76,7 +74,6 @@ public class TabPane extends JFrame implements ListSelectionListener {
             if (list.getSelectedIndex() == 0) {
                 System.out.println("clients");
                 try {
-                    this.setSize(800, 900);
                     model.setRowCount(1);
                     CnxDatabaseQuery();
 
@@ -87,7 +84,6 @@ public class TabPane extends JFrame implements ListSelectionListener {
                 System.out.println("produits");
 
                 try {
-                    this.setSize(800, 900);
                     model.setRowCount(1);
                     DisplayProduct();
 
