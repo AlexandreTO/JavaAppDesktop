@@ -23,6 +23,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
      *
      */
     private static final long serialVersionUID = -3600359177074176957L;
+
     String[] columnName = { "Nom", "Prenom", "Email", "Adresse", "Telephone" };
     DefaultTableModel model = new DefaultTableModel(columnName, 0);
     JTable table = new JTable(model);
@@ -31,13 +32,17 @@ public class TabPane extends JFrame implements ListSelectionListener {
 
     public TabPane() throws Exception {
         super("JTab");
-        this.setSize(800, 500);
+
+        this.setLayout(new BorderLayout());
+        JPanel rightPanel = new JPanel();
+        rightPanel.add(table);
+        this.setSize(800, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Left side of the window
 
         list.addListSelectionListener(this);
-        JScrollPane pg = new JScrollPane(table);
+        JScrollPane pg = new JScrollPane(rightPanel);
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, list, pg);
 
         JPanel contentPane = (JPanel) getContentPane();
@@ -71,25 +76,31 @@ public class TabPane extends JFrame implements ListSelectionListener {
             if (list.getSelectedIndex() == 0) {
                 System.out.println("clients");
                 try {
+                    this.setSize(800, 900);
+                    model.setRowCount(1);
                     CnxDatabaseQuery();
+
                 } catch (SQLException e1) {
                     System.out.println(e1.getMessage());
                 }
             } else if (list.getSelectedIndex() == 1) {
                 System.out.println("produits");
+
                 try {
+                    this.setSize(800, 900);
+                    model.setRowCount(1);
                     DisplayProduct();
+
                 } catch (SQLException e2) {
                     System.out.println(e2.getMessage());
                 }
             }
         }
-
     }
 
     // Display the table for the products
     private void DisplayProduct() throws SQLException {
-        String sql = "select DISTINCT Nom, Prix, Description FROM Produit";
+        String sql = "select DISTINCT Nom, Prix, Description FROM produit";
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
         PreparedStatement state = con.prepareStatement(sql);
         ResultSet rs = state.executeQuery();
@@ -100,7 +111,6 @@ public class TabPane extends JFrame implements ListSelectionListener {
             model.addRow(new Object[] { nom, prix, desc });
         }
         con.close();
-
     }
 
     public void DisplayGui() throws Exception {
