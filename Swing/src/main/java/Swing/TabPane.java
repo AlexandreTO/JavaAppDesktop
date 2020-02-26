@@ -74,7 +74,9 @@ public class TabPane extends JFrame implements ListSelectionListener {
             if (list.getSelectedIndex() == 0) {
                 System.out.println("clients");
                 try {
-                    model.setRowCount(1);
+
+                    // Met à jour le tableau en effaçant le contenu
+                    model.setRowCount(0);
                     CnxDatabaseQuery();
 
                 } catch (SQLException e1) {
@@ -84,7 +86,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
                 System.out.println("produits");
 
                 try {
-                    model.setRowCount(1);
+                    model.setRowCount(0);
                     DisplayProduct();
 
                 } catch (SQLException e2) {
