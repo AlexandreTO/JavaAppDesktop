@@ -1,5 +1,13 @@
 # Changelog Java App
 
+## Version 1.1
+
+26/02/2020
+
+- Fix of the price output of the products.
+- Add some comments for easier comprehension
+- Fix the updating system for tables with the mouse click listener
+
 ## Version 1.0
 
 14/02/2020

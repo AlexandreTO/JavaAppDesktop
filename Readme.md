@@ -8,4 +8,12 @@ Made in **Java** with the framework **Swing** to create graphic interfaces
 
 - ~~Multiple panels for the app to allow he user to navigate through it.~~
 - ~~Do a listing of the products~~
-- Fix the update with the tables on the right side of the windows and display dynamic column names.
+- Display dynamic column names.
+
+## Credits
+
+Alexandre TO
+
+Christopher WILLIAMS
+
+Laurine PILLET

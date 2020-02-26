@@ -75,7 +75,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
                 System.out.println("clients");
                 try {
 
-                    // Met à jour le tableau en effaçant le contenu
+                    // Update the table on click
                     model.setRowCount(0);
                     CnxDatabaseQuery();
 
@@ -104,7 +104,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
         ResultSet rs = state.executeQuery();
         while (rs.next()) {
             String nom = rs.getString("Nom");
-            int prix = rs.getInt("Prix");
+            double prix = rs.getDouble("Prix");
             String desc = rs.getString("Description");
             model.addRow(new Object[] { nom, prix, desc });
         }

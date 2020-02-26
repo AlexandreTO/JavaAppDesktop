@@ -13,6 +13,6 @@ public class AppTest {
      */
     @Test
     public void shouldAnswerWithTrue() {
-        assertEquals(2, Class.calculer(1, 2));
+        assertEquals(2, Class.calculer(1, 1));
     }
 }
