@@ -30,7 +30,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
     String[] data = { "Clients", "Produits" };
     JList<String> list = new JList<String>(data);
 
-    public TabPane() throws Exception {
+    public TabPane() {
         super("JTab");
 
         this.setLayout(new BorderLayout());
@@ -48,23 +48,28 @@ public class TabPane extends JFrame implements ListSelectionListener {
     }
 
     // Connexion to the database and query
-    private void CnxDatabaseQuery() throws SQLException {
+    private void CnxDatabaseQuery() {
         String sql = "select DISTINCT Nom, Prenom, Email,Adresse, Telephone from clients";
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
 
-        PreparedStatement state = con.prepareStatement(sql);
-        ResultSet rs = state.executeQuery();
-        while (rs.next()) {
-            String nom = rs.getString("Nom");
-            String prenom = rs.getString("Prenom");
-            String mail = rs.getString("Email");
-            String adresse = rs.getString("Adresse");
-            String tel = rs.getString("Telephone");
-            model.addRow(new Object[] { nom, prenom, mail, adresse, tel });
+            PreparedStatement state = con.prepareStatement(sql);
+            ResultSet rs = state.executeQuery();
+            while (rs.next()) {
+                String nom = rs.getString("Nom");
+                String prenom = rs.getString("Prenom");
+                String mail = rs.getString("Email");
+                String adresse = rs.getString("Adresse");
+                String tel = rs.getString("Telephone");
+                model.addRow(new Object[] { nom, prenom, mail, adresse, tel });
+            }
+
+            TableColumnModel column = table.getColumnModel();
+            column.getColumn(3).setPreferredWidth(100);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-
-        TableColumnModel column = table.getColumnModel();
-        column.getColumn(3).setPreferredWidth(100);
 
     }
 
@@ -73,46 +78,44 @@ public class TabPane extends JFrame implements ListSelectionListener {
         if (e.getValueIsAdjusting() == false) {
             if (list.getSelectedIndex() == 0) {
                 System.out.println("clients");
-                try {
-
-                    // Update the table on click
-                    model.setRowCount(0);
-                    CnxDatabaseQuery();
-
-                } catch (SQLException e1) {
-                    System.out.println(e1.getMessage());
-                }
+                // Update the table on click
+                model.setRowCount(0);
+                CnxDatabaseQuery();
             } else if (list.getSelectedIndex() == 1) {
                 System.out.println("produits");
 
-                try {
-                    model.setRowCount(0);
-                    DisplayProduct();
-
-                } catch (SQLException e2) {
-                    System.out.println(e2.getMessage());
-                }
+                model.setRowCount(0);
+                DisplayProduct();
             }
         }
     }
 
     // Display the table for the products
-    private void DisplayProduct() throws SQLException {
+    private void DisplayProduct() {
         String sql = "select DISTINCT Nom, Prix, Description FROM produit";
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
-        PreparedStatement state = con.prepareStatement(sql);
-        ResultSet rs = state.executeQuery();
-        while (rs.next()) {
-            String nom = rs.getString("Nom");
-            double prix = rs.getDouble("Prix");
-            String desc = rs.getString("Description");
-            model.addRow(new Object[] { nom, prix, desc });
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
+            PreparedStatement state = con.prepareStatement(sql);
+            ResultSet rs = state.executeQuery();
+            while (rs.next()) {
+                String nom = rs.getString("Nom");
+                double prix = rs.getDouble("Prix");
+                String desc = rs.getString("Description");
+                model.addRow(new Object[] { nom, prix, desc });
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-        con.close();
+
     }
 
-    public void DisplayGui() throws Exception {
-        UIManager.setLookAndFeel(new NimbusLookAndFeel());
+    public void DisplayGui() {
+        try {
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         TabPane frame = new TabPane();
         frame.pack();
         frame.setVisible(true);

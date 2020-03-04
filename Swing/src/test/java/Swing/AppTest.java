@@ -1,6 +1,7 @@
 package Swing;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
@@ -13,6 +14,9 @@ public class AppTest {
      */
     @Test
     public void shouldAnswerWithTrue() {
-        assertEquals(2, Class.calculer(1, 1));
+
+        // assertEquals(2, Class.calculer(1, 1));
+        assertEquals(1, Class.testCnx());
+        assertNotNull(Class.testCnx());
     }
 }
