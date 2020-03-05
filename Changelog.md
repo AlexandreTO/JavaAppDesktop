@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.0
+
+### 05/03/2020
+
+- **Add dynamic columns name for the tables**
+
 ## Version 1.1.1
 
 ### 04/03/2020

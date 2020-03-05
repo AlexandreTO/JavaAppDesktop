@@ -6,13 +6,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
 /**
  * TabPane
@@ -24,7 +24,7 @@ public class TabPane extends JFrame implements ListSelectionListener {
      */
     private static final long serialVersionUID = -3600359177074176957L;
 
-    String[] columnName = { "Nom", "Prenom", "Email", "Adresse", "Telephone" };
+    String[] columnName;
     DefaultTableModel model = new DefaultTableModel(columnName, 0);
     JTable table = new JTable(model);
     String[] data = { "Clients", "Produits" };
@@ -52,9 +52,15 @@ public class TabPane extends JFrame implements ListSelectionListener {
         String sql = "select DISTINCT Nom, Prenom, Email,Adresse, Telephone from clients";
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
-
             PreparedStatement state = con.prepareStatement(sql);
             ResultSet rs = state.executeQuery();
+
+            // Allows us to work on the results of the query
+            ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
+
+            // Get the number of columns retrieved
+            int count = metaData.getColumnCount();
+
             while (rs.next()) {
                 String nom = rs.getString("Nom");
                 String prenom = rs.getString("Prenom");
@@ -63,10 +69,14 @@ public class TabPane extends JFrame implements ListSelectionListener {
                 String tel = rs.getString("Telephone");
                 model.addRow(new Object[] { nom, prenom, mail, adresse, tel });
             }
-
-            TableColumnModel column = table.getColumnModel();
-            column.getColumn(3).setPreferredWidth(100);
-
+            /*
+             * Change the header of the column in the table fetched with the query,j-1
+             * because for getColumnCount, first index is 1 NOT 0
+             */
+            for (int j = 1; j <= count; j++) {
+                table.getColumnModel().getColumn(j - 1).setHeaderValue(metaData.getColumnLabel(j));
+            }
+            con.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -77,14 +87,14 @@ public class TabPane extends JFrame implements ListSelectionListener {
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
             if (list.getSelectedIndex() == 0) {
-                System.out.println("clients");
                 // Update the table on click
                 model.setRowCount(0);
+                // Set the number of columns that will appear.
+                model.setColumnCount(5);
                 CnxDatabaseQuery();
             } else if (list.getSelectedIndex() == 1) {
-                System.out.println("produits");
-
                 model.setRowCount(0);
+                model.setColumnCount(3);
                 DisplayProduct();
             }
         }
@@ -93,15 +103,22 @@ public class TabPane extends JFrame implements ListSelectionListener {
     // Display the table for the products
     private void DisplayProduct() {
         String sql = "select DISTINCT Nom, Prix, Description FROM produit";
+
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
             PreparedStatement state = con.prepareStatement(sql);
             ResultSet rs = state.executeQuery();
+            ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
+            int count = metaData.getColumnCount();
             while (rs.next()) {
                 String nom = rs.getString("Nom");
                 double prix = rs.getDouble("Prix");
                 String desc = rs.getString("Description");
                 model.addRow(new Object[] { nom, prix, desc });
+            }
+
+            for (int j = 1; j <= count; j++) {
+                table.getColumnModel().getColumn(j - 1).setHeaderValue(metaData.getColumnLabel(j));
             }
             con.close();
         } catch (SQLException e) {
