@@ -1,4 +1,4 @@
-# Java Desktop for the Project Two
+# Java App for the Project Two
 
 [![Maven Central status](https://img.shields.io/maven-central/v/com.atlassian.commonmark/commonmark.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.atlassian.commonmark%22)
 
