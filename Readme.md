@@ -9,8 +9,8 @@ Made in **Java** with the framework **Swing** to create graphic interfaces
 - ~~Multiple panels for the app to allow he user to navigate through it.~~
 - ~~Do a listing of the products~~
 - ~~Display dynamic column names.~~
-- Add clients number of products bought
-- Add the most sold products order by descending
+- ~~Add clients number of products bought~~
+- ~~Add the most sold products order by descending~~ 
 
 ## Credits
 
