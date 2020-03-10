@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.1
+
+### 10/03/2020
+
+- Change and update of the database
+- New tab that displays the most sold products
+
 ## Version 2.0
 
 ### 05/03/2020
