@@ -27,11 +27,11 @@ public class TabPane extends JFrame implements ListSelectionListener {
     String[] columnName;
     DefaultTableModel model = new DefaultTableModel(columnName, 0);
     JTable table = new JTable(model);
-    String[] data = { "Clients", "Produits" };
+    String[] data = { "Clients", "Produits", "Plus vendus" };
     JList<String> list = new JList<String>(data);
 
     public TabPane() {
-        super("JTab");
+        super("App");
 
         this.setLayout(new BorderLayout());
         this.setSize(800, 500);
@@ -96,6 +96,10 @@ public class TabPane extends JFrame implements ListSelectionListener {
                 model.setRowCount(0);
                 model.setColumnCount(3);
                 DisplayProduct();
+            } else if (list.getSelectedIndex() == 2) {
+                model.setRowCount(0);
+                model.setColumnCount(3);
+                MostSoldProduct();
             }
         }
     }
@@ -125,6 +129,31 @@ public class TabPane extends JFrame implements ListSelectionListener {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    private void MostSoldProduct() {
+        String req = "select Nom, quantite, Vendu from produit order by Vendu desc";
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
+            PreparedStatement state = con.prepareStatement(req);
+            ResultSet rs = state.executeQuery();
+            ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
+            int count = metaData.getColumnCount();
+
+            while (rs.next()) {
+                String nom = rs.getString("Nom");
+                String qte = rs.getString("quantite");
+                String vendu = rs.getString("Vendu");
+                model.addRow(new Object[] { nom, qte, vendu });
+            }
+
+            for (int i = 1; i <= count; i++) {
+                table.getColumnModel().getColumn(i - 1).setHeaderValue(metaData.getColumnLabel(i));
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void DisplayGui() {
