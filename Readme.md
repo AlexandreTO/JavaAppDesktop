@@ -17,8 +17,8 @@ Made in **Java** with the framework **Swing** to create graphic interfaces
 
 To import the project in Eclipse, make sure to have the right database and user / password that correspond to your connection.
 
-``` Markdown
-File > Import > Maven > Existing Maven project > Select the project
+```Markdown
+File > Import > Maven > Existing Maven project > Browse > Select the directory of the project
 ```
 
 Click on the "Run" button to launch it.
