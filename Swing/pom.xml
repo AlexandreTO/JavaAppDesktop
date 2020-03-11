@@ -14,13 +14,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.13</maven.compiler.source>
-    <maven.compiler.target>1.13</maven.compiler.target>
+    <maven.compiler.source>13</maven.compiler.source>
+    <maven.compiler.target>13</maven.compiler.target>
   </properties>
-  <classpath>
-    <classpathentry exported="true" kind="lib" path="lib/sqlite-jdbc-3.27.2.1.jar"/>
-  </classpath>
-
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -66,7 +63,16 @@
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.2.0</version>
+          <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>Swing.Main</mainClass>
+          </manifest>
+          </archive>
+        </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>

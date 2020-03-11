@@ -11,6 +11,7 @@ Made in **Java** with the framework **Swing** to create graphic interfaces
 - ~~Display dynamic column names.~~
 - ~~Add clients number of products bought~~
 - ~~Add the most sold products order by descending~~ 
+- Deployment with the database for the execution
 
 ## Credits
 

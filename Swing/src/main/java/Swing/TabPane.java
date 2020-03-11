@@ -49,6 +49,11 @@ public class TabPane extends JFrame implements ListSelectionListener {
 
     // Connexion to the database and query
     private void CnxDatabaseQuery() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         String sql = "select DISTINCT Nom, Prenom, Email,Adresse, Telephone from clients";
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
@@ -106,6 +111,11 @@ public class TabPane extends JFrame implements ListSelectionListener {
 
     // Display the table for the products
     private void DisplayProduct() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         String sql = "select DISTINCT Nom, Prix, Description FROM produit";
 
         try {
@@ -132,6 +142,11 @@ public class TabPane extends JFrame implements ListSelectionListener {
     }
 
     private void MostSoldProduct() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         String req = "select Nom, quantite, Vendu from produit order by Vendu desc";
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
