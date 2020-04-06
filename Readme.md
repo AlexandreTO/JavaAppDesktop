@@ -15,7 +15,7 @@ Made in **Java** with the framework **Swing** to create graphic interfaces
 
 ## Importing the project in Eclipse
 
-To import the project in Eclipse, make sure to have the right database and user / password that correspond to your connection.
+To import the project in Eclipse, clone it somwhere on your pc, make sure to have the right database and user / password that correspond to your connection.
 
 ```Markdown
 File > Import > Maven > Existing Maven project > Browse > Select the directory of the project
