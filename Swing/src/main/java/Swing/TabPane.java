@@ -56,7 +56,8 @@ public class TabPane extends JFrame implements ListSelectionListener {
         }
         String sql = "select DISTINCT Nom, Prenom, Email,Adresse, Telephone from clients";
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet?serverTimezone=UTC", "root",
+                    "root");
             PreparedStatement state = con.prepareStatement(sql);
             ResultSet rs = state.executeQuery();
 
@@ -119,7 +120,8 @@ public class TabPane extends JFrame implements ListSelectionListener {
         String sql = "select DISTINCT Nom, Prix, Description FROM produit";
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet?serverTimezone=UTC", "root",
+                    "root");
             PreparedStatement state = con.prepareStatement(sql);
             ResultSet rs = state.executeQuery();
             ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
@@ -149,7 +151,8 @@ public class TabPane extends JFrame implements ListSelectionListener {
         }
         String req = "select Nom, quantite, Vendu from produit order by Vendu desc";
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet", "root", "root");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/projet?serverTimezone=UTC", "root",
+                    "root");
             PreparedStatement state = con.prepareStatement(req);
             ResultSet rs = state.executeQuery();
             ResultSetMetaData metaData = (ResultSetMetaData) rs.getMetaData();
